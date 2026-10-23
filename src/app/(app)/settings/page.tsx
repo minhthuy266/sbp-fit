@@ -1,0 +1,1 @@
+import Link from "next/link";export default function Page(){return <section className="glass p-8"><span className="pill">ROADMAP</span><h1 className="text-4xl font-bold mt-5">Settings</h1><p className="muted mt-4">Team preferences and member management will arrive in the next sprint.</p><Link href="/dashboard" className="btn mt-7">Back to dashboard</Link></section>}

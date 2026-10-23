@@ -1,0 +1,2 @@
+import {redirect} from "next/navigation";import {createClient} from "@/lib/supabase/server";import {Sidebar} from "@/components/sidebar";
+export default async function AppLayout({children}:{children:React.ReactNode}){if(!process.env.NEXT_PUBLIC_SUPABASE_URL)redirect("/login");const sb=await createClient();const {data:{user},error}=await sb.auth.getUser();if(error||!user)redirect("/login");return <div className="flex min-h-screen"><Sidebar/><main className="mainpage flex-1 max-w-7xl mx-auto w-full p-9 pb-28">{children}</main></div>}

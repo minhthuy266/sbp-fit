@@ -1,0 +1,1 @@
+import Link from "next/link";export default function Page(){return <section className="glass p-8"><span className="pill">ROADMAP</span><h1 className="text-4xl font-bold mt-5">Challenges</h1><p className="muted mt-4">Challenge creation and participation will be implemented in Sprint 02.</p><Link href="/dashboard" className="btn mt-7">Back to dashboard</Link></section>}
