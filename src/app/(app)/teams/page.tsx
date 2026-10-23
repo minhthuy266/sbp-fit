@@ -1,2 +1,3 @@
+import {redirect} from "next/navigation";
 import {createClient} from "@/lib/supabase/server";import {TeamsClient} from "@/components/teams-client";
-export default async function Teams(){const sb=await createClient();const {data:{user}}=await sb.auth.getUser();const {data:members,error}=await sb.from("team_members").select("team_id,role,teams(id,name,slug,timezone)").eq("user_id",user!.id);return <TeamsClient initialMemberships={members??[]} initialError={error?.message}/>;}
+export default async function Teams(){const sb=await createClient();const {data:{user},error:authError}=await sb.auth.getUser();if(authError||!user)redirect("/login");const {data:members,error}=await sb.from("team_members").select("team_id,role,teams(id,name,slug,timezone)").eq("user_id",user.id);return <TeamsClient initialMemberships={members??[]} initialError={error?.message}/>;}
